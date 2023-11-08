@@ -1,0 +1,2 @@
+Product Name: Name	Product Brand: Brand	Owner Name: Full Name	Owner phone number: +37535453245	Repair cost: 34.365	Acceptance date: 15.10.2023	Issue date: 20.10.2023	Status: 0
+Product Name: Goal	Product Brand: Brand2	Owner Name: Full Name2	Owner phone number: +3754412369	Repair cost: 28.9	Acceptance date: 16.10.2023	Issue date: 25.10.2023	Status: 1
