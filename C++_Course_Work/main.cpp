@@ -1,9 +1,9 @@
-#include "order.h"
+#include "binary_tree.h"
 #include "user.h"
 #include <conio.h>
 #include <Windows.h>
 #include "SHA256.h"
-#include <fstream>
+//#include <fstream>
 //b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9
 //e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 int main()
@@ -63,6 +63,12 @@ int main()
 	in.close();     // закрываем файл
 	Order ball("Name", "Brand", "Full Name", "+37535453245", 34.365, "15.10.2023", "20.10.2023", false);
 	Order goal("Goal", "Brand2", "Full Name2", "+3754412369", 28.9, "16.10.2023", "25.10.2023", true);
+	Node* root = nullptr;//LoadOrdersFromFile("../data/orders.bin");
+	//CreateNode(ball);
+	//InsertNode(root, ball);
+	InsertNode(root, goal);
+	//PrintOrdersByAcceptanceDate(root);
+	return 0;
 	int countOfElements = 1;
 	std::ofstream out("../data/orders_info.txt");
 	if (out.is_open())
@@ -74,7 +80,6 @@ int main()
 		}
 	}
 
-	return 0;
 	std::cout << ball;
 	Order test;
 	User user;
