@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="binary tree.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="order.cpp" />
@@ -135,6 +136,7 @@
     <ClCompile Include="user.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="binary_tree.h" />
     <ClInclude Include="functions.h" />
     <ClInclude Include="SHA256.h" />
     <ClInclude Include="user.h" />

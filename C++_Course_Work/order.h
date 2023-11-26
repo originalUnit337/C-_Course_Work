@@ -21,4 +21,14 @@ public:
 	friend std::ostream& operator << (std::ostream& os, const Order& order);
 
 	friend std::istream& operator >> (std::istream& in, Order& order);
+
+	std::string GetProductName();
+	std::string GetProductBrand();
+	std::string GetOwnerFullName();
+	std::string GetOwnerPhoneNumber();
+	double GetRepairCost();
+	std::string GetAcceptanceDate();
+	std::string GetIssueDate();
+	bool GetStatus();
+
 };

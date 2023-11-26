@@ -1,17 +1,18 @@
-﻿  functions.cpp
+﻿  binary tree.cpp
+  functions.cpp
   main.cpp
   order.cpp
   order.h
   SHA256.cpp
-C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work\C++_Course_Work\SHA256.cpp(123,15): warning C4244: =: преобразование "uint64_t" в "uint8_t", возможна потеря данных
-C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work\C++_Course_Work\SHA256.cpp(124,24): warning C4244: =: преобразование "uint64_t" в "uint8_t", возможна потеря данных
-C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work\C++_Course_Work\SHA256.cpp(125,24): warning C4244: =: преобразование "uint64_t" в "uint8_t", возможна потеря данных
-C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work\C++_Course_Work\SHA256.cpp(126,24): warning C4244: =: преобразование "uint64_t" в "uint8_t", возможна потеря данных
-C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work\C++_Course_Work\SHA256.cpp(127,24): warning C4244: =: преобразование "uint64_t" в "uint8_t", возможна потеря данных
-C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work\C++_Course_Work\SHA256.cpp(128,24): warning C4244: =: преобразование "uint64_t" в "uint8_t", возможна потеря данных
-C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work\C++_Course_Work\SHA256.cpp(129,24): warning C4244: =: преобразование "uint64_t" в "uint8_t", возможна потеря данных
+C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\SHA256.cpp(123,15): warning C4244: =: преобразование "uint64_t" в "uint8_t", возможна потеря данных
+C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\SHA256.cpp(124,24): warning C4244: =: преобразование "uint64_t" в "uint8_t", возможна потеря данных
+C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\SHA256.cpp(125,24): warning C4244: =: преобразование "uint64_t" в "uint8_t", возможна потеря данных
+C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\SHA256.cpp(126,24): warning C4244: =: преобразование "uint64_t" в "uint8_t", возможна потеря данных
+C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\SHA256.cpp(127,24): warning C4244: =: преобразование "uint64_t" в "uint8_t", возможна потеря данных
+C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\SHA256.cpp(128,24): warning C4244: =: преобразование "uint64_t" в "uint8_t", возможна потеря данных
+C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\SHA256.cpp(129,24): warning C4244: =: преобразование "uint64_t" в "uint8_t", возможна потеря данных
   user.cpp
   Создание кода...
-C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work\C++_Course_Work\order.cpp(96): warning C4715: operator>>: значение возвращается не при всех путях выполнения
+C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\order.cpp(136): warning C4715: operator>>: значение возвращается не при всех путях выполнения
 x64\Debug\order.obj : warning LNK4042: объект указан более одного раза; лишние не учитываются
-  C++_Course_Work.vcxproj -> C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work\x64\Debug\C++_Course_Work.exe
+  C++_Course_Work.vcxproj -> C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\x64\Debug\C++_Course_Work.exe

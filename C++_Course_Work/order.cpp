@@ -29,6 +29,46 @@ void Order::Print(const std::string& _product_name, const std::string& _product_
 	
 }
 
+std::string Order::GetProductName()
+{
+	return this->_product_name;
+}
+
+std::string Order::GetProductBrand()
+{
+	return this->_product_brand;
+}
+
+std::string Order::GetOwnerFullName()
+{
+	return this->_owner_full_name;
+}
+
+std::string Order::GetOwnerPhoneNumber()
+{
+	return this->_owner_phone_number;
+}
+
+double Order::GetRepairCost()
+{
+	return this->_repair_cost;
+}
+
+std::string Order::GetAcceptanceDate()
+{
+	return this->_acceptance_date;
+}
+
+std::string Order::GetIssueDate()
+{
+	return this->_issue_date;
+}
+
+bool Order::GetStatus()
+{
+	return this->_status;
+}
+
 std::ostream& operator << (std::ostream& os, const Order& order)
 {
 	os << "Product Name: " << order._product_name << "\t";
