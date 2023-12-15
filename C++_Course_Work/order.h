@@ -1,4 +1,8 @@
+#pragma once
 #include <iostream>
+#include <iomanip>
+#include <string>
+
 class Order
 {
 private:
@@ -31,4 +35,12 @@ public:
 	std::string GetIssueDate();
 	bool GetStatus();
 
+	void SetProductName(std::string name);
+	void SetProductBrand(std::string name);
+	void SetOwnerFullName(std::string name);
+	void SetOwnerPhoneNumber(std::string phone_number);
+	void SetRepairCost(double cost);
+	void SetAcceptanceDate(std::string date);
+	void SetIssueDate(std::string date);
+	void SetStatus(bool status);
 };
