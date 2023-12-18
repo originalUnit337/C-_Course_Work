@@ -111,14 +111,14 @@ void Order::SetStatus(bool status)
 
 std::ostream& operator << (std::ostream& os, const Order& order)
 {
-	os << std::left << std::setw(20) << order._product_name
-		<< std::setw(20) << order._product_brand
+	os << std::left << std::setw(30) << order._product_name
+		<< std::setw(30) << order._product_brand
 		<< std::setw(30) << order._owner_full_name
 		<< std::setw(20) << order._owner_phone_number
 		<< std::setw(15) << order._repair_cost
-		<< std::setw(15) << order._acceptance_date
-		<< std::setw(15) << order._issue_date
-		<< std::setw(10) << (order._status ? "Active" : "Inactive") << std::endl;
+		<< std::setw(17) << order._acceptance_date
+		<< std::setw(17) << order._issue_date
+		<< std::setw(10) << (order._status ? "Completed" : "Not completed") << std::endl;
 
 	/*os << "Product Name: " << order._product_name << "\t";
 	os << "Product Brand: " << order._product_brand << "\t";

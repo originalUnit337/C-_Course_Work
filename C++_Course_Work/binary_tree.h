@@ -15,15 +15,21 @@ class TreeNodeUser;
 
 //extern std::string UsersFileName = "../data/users.bin";
 
-class BinaryTreeUser {
+class BinaryTreeUser 
+{
 private:
     TreeNodeUser* root;
 
     TreeNodeUser* InsertUser(TreeNodeUser* node, User* user);
-    void PrintUsersPrivate(TreeNodeUser* node);
+    void PrintUsersPrivate(TreeNodeUser* node, int* count);
 
     int SearchUsersPrivate(TreeNodeUser* node, const std::string& name, const std::string& password);
     void SaveUsersToFilePrivate(TreeNodeUser* node, std::ofstream* outFile);
+
+    void DeleteUserTreePrivate(TreeNodeUser* node);
+    TreeNodeUser* DeleteUserNodePrivate(TreeNodeUser* node, int* count_to_find, int* count);
+    TreeNodeUser* FindMinNode(TreeNodeUser* node);
+    void EditUserNodePrivate(TreeNodeUser* node, int* count_to_find, int* count);
 public:
     BinaryTreeUser();
     //~BinaryTreeUser();
@@ -33,7 +39,11 @@ public:
     int SearchUsers(const std::string& name, const std::string& password);
     void Insert(User* user);
     void PrintUsers();
+    void DeleteUserTree();
+    void DeleteUserNode(int* count);
+    void EditUserNode(int* count);
 };
+
 
 class BinaryTreeOrder {
 private:
@@ -41,14 +51,16 @@ private:
 
     TreeNodeOrder* InsertOrder(TreeNodeOrder* node, Order* order);
     void PrintOrdersPrivate(TreeNodeOrder* node, int* count);
-    void PrintRepairingOrdersPrivate(TreeNodeOrder* node);
-    void SearchOrdersByProductNamePrivate(TreeNodeOrder* node, const std::string& _product_name);
+    void PrintRepairingOrdersPrivate(TreeNodeOrder* node, int* count);
+    void SearchOrdersByProductNamePrivate(TreeNodeOrder* node, const std::string& _product_name, int* count);
 
     void SaveOrdersToFilePrivate(TreeNodeOrder* node, std::ofstream* outFile);
 
     void DeleteOrderTreePrivate(TreeNodeOrder* node);
     TreeNodeOrder* DeleteOrderNodePrivate(TreeNodeOrder* node, int* count_to_find, int* count);
     TreeNodeOrder* FindMinNode(TreeNodeOrder* node);
+
+    void EditOrderNodePrivate(TreeNodeOrder* node, int* count_to_find, int* count);
 public:
     BinaryTreeOrder();
     //~BinaryTreeUser();
@@ -61,6 +73,7 @@ public:
     void SearchOrdersByProductName(const std::string& _product_name);
     void DeleteOrderTree();
     void DeleteOrderNode(int* count);
+    void EditOrderNode(int* count);
     //TreeNodeOrder* GetRoot();
     //void SetRoot(TreeNodeOrder* data);
 };

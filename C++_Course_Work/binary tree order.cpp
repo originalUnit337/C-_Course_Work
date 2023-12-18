@@ -14,13 +14,13 @@ void BinaryTreeOrder::PrintOrders()
 {
     int count = 1;
     int* countptr = &count;
-    std::cout << std::left << std::setw(20) << "Product Name"
-        << std::setw(20) << "Product Brand"
+    std::cout << std::left << std::setw(3) << "#" << std::setw(30) << "Product Name"
+        << std::setw(30) << "Product Brand"
         << std::setw(30) << "Owner Full Name"
         << std::setw(20) << "Phone Number"
         << std::setw(15) << "Repair Cost"
-        << std::setw(15) << "Acceptance Date"
-        << std::setw(15) << "Issue Date"
+        << std::setw(17) << "Acceptance Date"
+        << std::setw(17) << "Issue Date"
         << std::setw(10) << "Status" << std::endl;
 
     // ¬ывод разделительной строки
@@ -31,12 +31,45 @@ void BinaryTreeOrder::PrintOrders()
 
 void BinaryTreeOrder::PrintRepairingOrders()
 {
-    PrintRepairingOrdersPrivate(root);
+    int count = 1;
+    int* countptr = &count;
+    std::cout << std::left << std::setw(3) << "#" << std::setw(30) << "Product Name"
+        << std::setw(30) << "Product Brand"
+        << std::setw(30) << "Owner Full Name"
+        << std::setw(20) << "Phone Number"
+        << std::setw(15) << "Repair Cost"
+        << std::setw(17) << "Acceptance Date"
+        << std::setw(17) << "Issue Date"
+        << std::setw(10) << "Status" << std::endl;
+
+    // ¬ывод разделительной строки
+    std::cout << std::setfill('-') << std::setw(150) << "-" << std::endl;
+    std::cout << std::setfill(' ');
+    PrintRepairingOrdersPrivate(root, countptr);
 }
 
 void BinaryTreeOrder::SearchOrdersByProductName(const std::string& _product_name)
 {
-    SearchOrdersByProductNamePrivate(root, _product_name);
+    int count = 1;
+    int* countptr = &count;
+    std::cout << std::left << std::setw(3) << "#" << std::setw(30) << "Product Name"
+        << std::setw(30) << "Product Brand"
+        << std::setw(30) << "Owner Full Name"
+        << std::setw(20) << "Phone Number"
+        << std::setw(15) << "Repair Cost"
+        << std::setw(17) << "Acceptance Date"
+        << std::setw(17) << "Issue Date"
+        << std::setw(10) << "Status" << std::endl;
+
+    // ¬ывод разделительной строки
+    std::cout << std::setfill('-') << std::setw(150) << "-" << std::endl;
+    std::cout << std::setfill(' ');
+    SearchOrdersByProductNamePrivate(root, _product_name, countptr);
+    if (count == 1)
+    {
+        system("cls");
+        std::cout << "No such orders found" << std::endl;
+    }
 }
 
 void BinaryTreeOrder::SaveOrdersToFile(const std::string& filename)
@@ -65,6 +98,13 @@ void BinaryTreeOrder::DeleteOrderNode(int* count_to_find)
     int count = 1;
     int* countptr = &count;
     root = DeleteOrderNodePrivate(root, count_to_find, countptr);
+}
+
+void BinaryTreeOrder::EditOrderNode(int* count_to_find)
+{
+    int count = 1;
+    int* countptr = &count;
+    EditOrderNodePrivate(root, count_to_find, countptr);
 }
 
 bool compareDates(const std::string& date1, const std::string& date2);
@@ -129,37 +169,37 @@ void BinaryTreeOrder::PrintOrdersPrivate(TreeNodeOrder* node, int* count)
     {
         PrintOrdersPrivate(node->right, count);
         //std::cout << std::setw(10) << std::left << node->data->GetLogin() << std::setw(64) << std::left << node->data->GetPassword() << std::setw(1) << std::left << node->data->GetIsAdmin() << std::endl;
-        std::cout << (*count)++ << " " << *(node->data) << std::endl;
+        std::cout << std::left << std::setw(3) << (*count)++  << *(node->data) << std::endl;
         //count++;
         PrintOrdersPrivate(node->left, count);
     }
 }
 
-void BinaryTreeOrder::PrintRepairingOrdersPrivate(TreeNodeOrder* node)
+void BinaryTreeOrder::PrintRepairingOrdersPrivate(TreeNodeOrder* node, int* count)
 {
     if (node != nullptr)
     {
-        PrintRepairingOrdersPrivate(node->right);
+        PrintRepairingOrdersPrivate(node->right, count);
         if (!node->data->GetStatus())
         {
-            std::cout << *(node->data) << std::endl;
+            std::cout << std::left << std::setw(3) << (*count)++ << *(node->data) << std::endl;
             //std::cout << "Product: " << node->data->GetProductName() << ", Issue Date: " << node->data->GetIssueDate() << std::endl;
         }
-        PrintRepairingOrdersPrivate(node->left);
+        PrintRepairingOrdersPrivate(node->left, count);
     }
 }
 
-void BinaryTreeOrder::SearchOrdersByProductNamePrivate(TreeNodeOrder* node, const std::string& _product_name)
+void BinaryTreeOrder::SearchOrdersByProductNamePrivate(TreeNodeOrder* node, const std::string& _product_name, int* count)
 {
     if (node != nullptr) 
     {
-        SearchOrdersByProductNamePrivate(node->left, _product_name);
+        SearchOrdersByProductNamePrivate(node->right, _product_name, count);
         if (node->data->GetProductName().find(_product_name) != std::string::npos) 
         {
-            std::cout << *(node->data) << std::endl;
+            std::cout << std::left << std::setw(3) << (*count)++ << *(node->data) << std::endl;
             //std::cout << "Product: " << root->data->GetProductName() << ", Owner: " << root->data->GetOwnerFullName() << std::endl;
         }
-        SearchOrdersByProductNamePrivate(node->right, _product_name);
+        SearchOrdersByProductNamePrivate(node->left, _product_name, count);
     }
 }
 
@@ -281,6 +321,176 @@ TreeNodeOrder* BinaryTreeOrder::FindMinNode(TreeNodeOrder* node)
     }
 
     return node;
+}
+
+void BinaryTreeOrder::EditOrderNodePrivate(TreeNodeOrder* node, int* count_to_find, int* count)
+{
+    if (node != nullptr)
+    {
+        EditOrderNodePrivate(node->right, count_to_find, count);
+
+        if (*count_to_find == *count)
+        {
+            (*count)++; // во избежании повторного выполнени€ услови€
+            int choice;
+            std::string s;
+            double d;
+            bool b;
+            do
+            {
+                system("cls");
+                std::cout << *(node)->data << std::endl;
+                std::cout << "What do you want to change ?" << std::endl;
+                std::cout << "1. Product Name" << std::endl;
+                std::cout << "2. Product Brand" << std::endl;
+                std::cout << "3. Owner Full Name" << std::endl;
+                std::cout << "4. Owner Phone Number" << std::endl;
+                std::cout << "5. Repair Cost" << std::endl;
+                std::cout << "6. Acceptance Date" << std::endl;
+                std::cout << "7. Issue Date" << std::endl;
+                std::cout << "8. Status" << std::endl;
+                std::cout << "0. Exit" << std::endl;
+                std::cout << "Enter your choice: ";
+                std::cin.ignore(std::cin.rdbuf()->in_avail());
+                std::cin.clear();
+                std::cin >> choice;
+                std::cin.ignore(std::cin.rdbuf()->in_avail());
+                std::cin.clear();
+                while (cin.fail())
+                {
+                    //in.ignore(in.rdbuf()->in_avail());
+                    cin.clear();
+                    while (cin.get() != '\n');
+                    std::cout << "Invalid value. Try again" << std::endl;
+                    cin >> choice;
+                    std::cin.ignore(std::cin.rdbuf()->in_avail());
+                    std::cin.clear();
+                    //throw 1;
+                }
+                switch (choice) {
+                case 1:
+                    system("cls");
+                    std::cout << "Enter a new product name: ";
+                    std::getline(std::cin, s);
+                    //std::cin >> s;
+                    node->data->SetProductName(s);
+                    break;
+                case 2:
+                    system("cls");
+                    std::cout << "Enter a new product brand: ";
+                    std::getline(std::cin, s);
+                    //std::cin >> s;
+                    node->data->SetProductBrand(s);
+                    break;
+                case 3:
+                    system("cls");
+                    std::cout << "Enter a new owner full name: ";
+                    std::getline(std::cin, s);
+                    //std::cin >> s;
+                    node->data->SetOwnerFullName(s);
+                    break;
+                case 4:
+                    system("cls");
+                    std::cout << "Enter a new owner phone number: ";
+                    std::getline(std::cin, s);
+                    //std::cin >> s;
+                    node->data->SetOwnerPhoneNumber(s);
+                    break;
+                case 5:
+                    system("cls");
+                    std::cout << "Enter a new repair cost: ";
+                    std::cin >> d;
+                    while (cin.fail())
+                    {
+                        //in.ignore(in.rdbuf()->in_avail());
+                        cin.clear();
+                        while (cin.get() != '\n');
+                        std::cout << "Invalid value. Try again" << std::endl;
+                        cin >> d;
+                        //throw 1;
+                    }
+                    node->data->SetRepairCost(d);
+                    break;
+                case 6:
+                    system("cls");
+                    std::cout << "Enter a new acceptance date (please, use the dd.mm.yyyy format): ";
+                    std::getline(std::cin, s);
+                    //std::cin >> s;
+                    node->data->SetAcceptanceDate(s);
+                    system("cls");
+                    break;
+                case 7:
+                    system("cls");
+                    std::cout << "Enter a new issue date (please, use the dd.mm.yyyy format): ";
+                    std::getline(std::cin, s);
+                    //std::cin >> s;
+                    node->data->SetIssueDate(s);
+                    system("cls");
+                    break;
+                case 8:
+                    system("cls");
+                    std::cout << "Enter a new status: ";
+                    std::cin >> b;
+                    node->data->SetStatus(b);
+                    std::cin.clear();
+                    system("cls");
+                    break;
+                case 0:
+                    system("cls");
+                    std::cout << "Are you sure ?" << std::endl;
+                    std::cout << "1. Yes" << std::endl;
+                    std::cout << "2. No" << std::endl;
+                    int choice3;
+                    std::cin.ignore(std::cin.rdbuf()->in_avail());
+                    std::cin.clear();
+
+                    do
+                    {
+                        std::cin >> choice3;
+                        while (cin.fail())
+                        {
+                            //in.ignore(in.rdbuf()->in_avail());
+                            cin.clear();
+                            while (cin.get() != '\n');
+                            std::cout << "Invalid value. Try again" << std::endl;
+                            cin >> choice3;
+                        }
+                        switch (choice3)
+                        {
+                        case 1:
+                            choice3 = 0;
+                            system("cls");
+                            std::cout << "Exiting..." << std::endl;
+                            break;
+                        case 2:
+                            //system("cls");
+                            choice = 1;
+                            choice3 = 0;
+                            break;
+                        default:
+                            choice3 = 1;
+                            std::cout << "Invalid choice. Please try again." << std::endl;
+                        }
+                    } while (choice3 != 0);
+                    //users = readUsersFromFile("users.txt");
+                    //std::cout << "Changes cancelled." << std::endl;
+                    break;
+                default:
+                    std::cout << "Invalid choice. Please try again." << std::endl;
+                }
+            } while (choice != 0);
+        }
+        else
+        {
+            (*count)++;
+            EditOrderNodePrivate(node->left, count_to_find, count);
+        }
+    }
+    else
+    {
+        return;
+    }
+    return;
 }
 
 
