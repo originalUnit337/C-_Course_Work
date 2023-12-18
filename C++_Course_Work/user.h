@@ -3,6 +3,8 @@
 #define USER_H
 
 #include <iostream>
+#include <conio.h>
+#include "SHA256.h"
 //#include "binary_tree.h"
 
 class BinaryTreeOrder;
@@ -36,6 +38,7 @@ class Admin : User
 public:
 	//void AddNewOrder();
 	void AddNewOrder(BinaryTreeOrder* tree);
+	void AddNewUser(BinaryTreeUser* tree);
 	Admin() = default;
 };
 #endif // !USER_H

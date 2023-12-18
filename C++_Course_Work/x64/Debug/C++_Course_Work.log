@@ -1,10 +1,11 @@
 ﻿  binary tree order.cpp
-C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\binary tree order.cpp(120,41): warning C4101: e: неиспользованная локальная переменная
-C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\binary tree order.cpp(295,35): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\binary tree order.cpp(300,36): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\binary tree order.cpp(305,38): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\binary tree order.cpp(310,41): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\binary tree order.cpp(320,38): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\binary tree order.cpp(325,33): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\binary tree order.cpp(124): warning C4715: compareDates: значение возвращается не при всех путях выполнения
+C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\binary tree order.cpp(160,41): warning C4101: e: неиспользованная локальная переменная
+C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\binary tree order.cpp(505,35): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\binary tree order.cpp(510,36): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\binary tree order.cpp(515,38): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\binary tree order.cpp(520,41): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\binary tree order.cpp(530,38): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\binary tree order.cpp(535,33): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\C++_Course_Work\binary tree order.cpp(164): warning C4715: compareDates: значение возвращается не при всех путях выполнения
+x64\Debug\order.obj : warning LNK4042: объект указан более одного раза; лишние не учитываются
   C++_Course_Work.vcxproj -> C:\Users\user\Documents\GSTU Study\2nd course\1st term\Program Design (PD)\C++\C++_Course_Work_Git\x64\Debug\C++_Course_Work.exe
