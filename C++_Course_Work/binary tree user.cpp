@@ -1,14 +1,8 @@
 #include "binary_tree.h"
 
-BinaryTreeUser::BinaryTreeUser()
-{
-    root = nullptr;
-}
+BinaryTreeUser::BinaryTreeUser() { root = nullptr; }
 
-void BinaryTreeUser::Insert(User* user)
-{
-    root = InsertUser(root, user);
-}
+void BinaryTreeUser::Insert(User* user) { root = InsertUser(root, user); }
 
 void BinaryTreeUser::PrintUsers()
 {
@@ -37,7 +31,7 @@ void BinaryTreeUser::EditUserNode(int* count_to_find)
 {
     int count = 1;
     int* countptr = &count;
-    EditUserNodePrivate(root, count_to_find, countptr);
+    EditUserNodePrivate(root, count_to_find, countptr, this);
 }
 
 void BinaryTreeUser::SaveUsersToFile(const std::string& filename)
@@ -47,7 +41,6 @@ void BinaryTreeUser::SaveUsersToFile(const std::string& filename)
     {
         SaveUsersToFilePrivate(root, &outFile);
         outFile.close();
-        //SaveOrdersToFilePrivate(root, outFile);
         std::cout << "Data has been written to the file." << std::endl;
     }
     else {
@@ -206,7 +199,6 @@ TreeNodeUser* BinaryTreeUser::DeleteUserNodePrivate(TreeNodeUser* node, int* cou
         return nullptr;
     }
     return node;
-    //return nullptr;
 }
 
 TreeNodeUser* BinaryTreeUser::FindMinNode(TreeNodeUser* node)
@@ -222,11 +214,11 @@ TreeNodeUser* BinaryTreeUser::FindMinNode(TreeNodeUser* node)
     return node;
 }
 
-void BinaryTreeUser::EditUserNodePrivate(TreeNodeUser* node, int* count_to_find, int* count)
+void BinaryTreeUser::EditUserNodePrivate(TreeNodeUser* node, int* count_to_find, int* count, BinaryTreeUser* tree)
 {
     if (node != nullptr)
     {
-        EditUserNodePrivate(node->left, count_to_find, count);
+        EditUserNodePrivate(node->left, count_to_find, count, tree);
 
         if (*count_to_find == *count)
         {
@@ -236,7 +228,6 @@ void BinaryTreeUser::EditUserNodePrivate(TreeNodeUser* node, int* count_to_find,
             bool b;
             do
             {
-                //system("cls");
                 std::cout << "What do you want to change ?" << std::endl;
                 std::cout << "1. Username" << std::endl;
                 std::cout << "2. Password" << std::endl;
@@ -250,14 +241,12 @@ void BinaryTreeUser::EditUserNodePrivate(TreeNodeUser* node, int* count_to_find,
                 std::cin.clear();
                 while (cin.fail())
                 {
-                    //in.ignore(in.rdbuf()->in_avail());
                     cin.clear();
                     while (cin.get() != '\n');
                     std::cout << "Invalid value. Try again" << std::endl;
                     cin >> choice;
                     std::cin.ignore(std::cin.rdbuf()->in_avail());
                     std::cin.clear();
-                    //throw 1;
                 }
                 SHA256 sha;
                 switch (choice) {
@@ -265,14 +254,19 @@ void BinaryTreeUser::EditUserNodePrivate(TreeNodeUser* node, int* count_to_find,
                     system("cls");
                     std::cout << "Enter a new username: ";
                     std::getline(std::cin, s);
-                    //std::cin >> s;
+                    while (tree->SearchUserName(s) == 1)
+                    {
+                        cin.clear();
+                        //while (cin.get() != '\n');
+                        std::cout << "Error: such username already exists. Please try again." << std::endl;
+                        getline(cin, s);
+                    }
                     node->data->SetLogin(s);
                     break;
                 case 2:
                     system("cls");
                     std::cout << "Enter a new password: ";
                     std::getline(std::cin, s);
-                    //std::cin >> s;
                     sha.update(s);
                     s.clear();
                     std::array<uint8_t, 32> digest = sha.digest();
@@ -280,7 +274,7 @@ void BinaryTreeUser::EditUserNodePrivate(TreeNodeUser* node, int* count_to_find,
                     break;
                 case 3:
                     system("cls");
-                    std::cout << "Enter a new role: ";
+                    std::cout << "Enter a new role (1 - admin, 0 - not admin): ";
                     std::cin >> b;
                     node->data->SetIsAdmin(b);
                     std::cin.clear();
@@ -313,7 +307,6 @@ void BinaryTreeUser::EditUserNodePrivate(TreeNodeUser* node, int* count_to_find,
                             std::cout << "Exiting..." << std::endl;
                             break;
                         case 2:
-                            //system("cls");
                             choice = 1;
                             choice3 = 0;
                             break;
@@ -322,8 +315,6 @@ void BinaryTreeUser::EditUserNodePrivate(TreeNodeUser* node, int* count_to_find,
                             std::cout << "Invalid choice. Please try again." << std::endl;
                         }
                     } while (choice3 != 0);
-                    //users = readUsersFromFile("users.txt");
-                    //std::cout << "Changes cancelled." << std::endl;
                     break;
                 default:
                     std::cout << "Invalid choice. Please try again." << std::endl;
@@ -333,7 +324,7 @@ void BinaryTreeUser::EditUserNodePrivate(TreeNodeUser* node, int* count_to_find,
         else
         {
             (*count)++;
-            EditUserNodePrivate(node->right, count_to_find, count);
+            EditUserNodePrivate(node->right, count_to_find, count, tree);
         }
     }
     else
@@ -367,7 +358,49 @@ int BinaryTreeUser::SearchUsersPrivate(TreeNodeUser* node, const std::string& na
     return 0;
 }
 
-int BinaryTreeUser::SearchUsers(const std::string& name, const std::string& password)
+int BinaryTreeUser::SearchUserNamePrivate(TreeNodeUser* node, const std::string& name) // true if such name exist
 {
-    return SearchUsersPrivate(root, name, password);
+    if (node != nullptr)
+    {
+        if (SearchUserNamePrivate(node->left, name) == 1) return 1;
+        else if (SearchUserNamePrivate(node->left, name) == 2) return 2;
+        int found_position_name = node->data->GetLogin().find(name);
+        if ((found_position_name != string::npos && found_position_name + name.length() == node->data->GetLogin().length()))
+        {
+            return 1;
+        }
+        if (SearchUserNamePrivate(node->right, name) == 1) return 1;
+        else if (SearchUserNamePrivate(node->left, name) == 2) return 2;
+    }
+    return 0;
+}
+
+int BinaryTreeUser::SearchUsers(const std::string& name, const std::string& password) { return SearchUsersPrivate(root, name, password); }
+
+int BinaryTreeUser::SearchUserName(const std::string& name) // true if such name exist
+{
+    return SearchUserNamePrivate(root, name);
+}
+
+
+int BinaryTreeUser::GetNameNumber(std::string s)
+{
+    int count = 1;
+    int* countptr = &count;
+    return GetNameNumberPrivate(root, s, countptr);
+}
+
+int BinaryTreeUser::GetNameNumberPrivate(TreeNodeUser* node, std::string s, int* count)
+{
+    if (node != nullptr)
+    {
+        GetNameNumberPrivate(node->left, s, count);
+        if (node->data->GetLogin() == s)
+        {
+            int temp = *count;
+            return temp;
+        }
+        else (*count)++;
+        GetNameNumberPrivate(node->right, s, count);
+    }
 }

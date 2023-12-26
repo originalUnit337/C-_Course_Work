@@ -129,9 +129,6 @@
   <ItemGroup>
     <ClCompile Include="binary tree order.cpp" />
     <ClCompile Include="binary tree user.cpp" />
-    <ClCompile Include="binary tree.cpp" />
-    <ClCompile Include="binary_tree.cpp" />
-    <ClCompile Include="functions.cpp" />
     <ClCompile Include="LoginScreen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="order.cpp" />
@@ -141,9 +138,7 @@
     <ClCompile Include="user.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ALL.h" />
     <ClInclude Include="binary_tree.h" />
-    <ClInclude Include="functions.h" />
     <ClInclude Include="LoginScreen.h" />
     <ClInclude Include="SHA256.h" />
     <ClInclude Include="TreeNode.h" />

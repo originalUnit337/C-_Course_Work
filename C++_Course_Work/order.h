@@ -18,10 +18,7 @@ public:
 	Order();
 
 	Order(const std::string& _product_name, const std::string& _product_brand, const std::string& _owner_full_name, const std::string& _owner_phone_number, double _repair_cost, const std::string& _acceptance_date, const std::string& _issue_date, bool _status);
-	
-	void Print(const std::string& _product_name, const std::string& _product_brand, const std::string& _owner_full_name, const std::string& _owner_phone_number, double _repair_cost, const std::string& _acceptance_date, const std::string& _issue_date, bool _status);
-	
-
+		
 	friend std::ostream& operator << (std::ostream& os, const Order& order);
 
 	friend std::istream& operator >> (std::istream& in, Order& order);

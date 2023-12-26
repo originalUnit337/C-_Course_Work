@@ -17,7 +17,6 @@ public:
 
 class TreeNodeOrder {
 public:
-    //int number;
     Order* data;
     TreeNodeOrder* left;
     TreeNodeOrder* right;

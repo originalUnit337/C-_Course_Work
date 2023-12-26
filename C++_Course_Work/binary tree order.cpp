@@ -1,14 +1,8 @@
 #include "binary_tree.h"
 
-BinaryTreeOrder::BinaryTreeOrder()
-{
-    root = nullptr;
-}
+BinaryTreeOrder::BinaryTreeOrder() { root = nullptr; }
 
-void BinaryTreeOrder::Insert(Order* order)
-{
-    root = InsertOrder(root, order);
-}
+void BinaryTreeOrder::Insert(Order* order) { root = InsertOrder(root, order); }
 
 void BinaryTreeOrder::PrintOrders()
 {
@@ -79,7 +73,6 @@ void BinaryTreeOrder::SaveOrdersToFile(const std::string& filename)
     {
         SaveOrdersToFilePrivate(root, &outFile);
         outFile.close();
-        //SaveOrdersToFilePrivate(root, outFile);
         std::cout << "Data has been written to the file." << std::endl;
     }
     else {
@@ -105,6 +98,10 @@ void BinaryTreeOrder::EditOrderNode(int* count_to_find)
     int count = 1;
     int* countptr = &count;
     EditOrderNodePrivate(root, count_to_find, countptr);
+    if (*count_to_find == *countptr)
+    {
+        std::cout << "No such object" << std::endl;
+    }
 }
 
 bool compareDates(const std::string& date1, const std::string& date2);
@@ -124,14 +121,6 @@ TreeNodeOrder* BinaryTreeOrder::InsertOrder(TreeNodeOrder* node, Order* order)
         {
             node->right = InsertOrder(node->right, order);
         }
-        /*if (order->GetAcceptanceDate() < node->data->GetAcceptanceDate())
-        {
-            node->left = InsertOrder(node->left, order);
-        }
-        else
-        {
-            node->right = InsertOrder(node->right, order);
-        }*/
     }
     return node;
 }
@@ -168,9 +157,7 @@ void BinaryTreeOrder::PrintOrdersPrivate(TreeNodeOrder* node, int* count)
     if (node != nullptr)
     {
         PrintOrdersPrivate(node->right, count);
-        //std::cout << std::setw(10) << std::left << node->data->GetLogin() << std::setw(64) << std::left << node->data->GetPassword() << std::setw(1) << std::left << node->data->GetIsAdmin() << std::endl;
         std::cout << std::left << std::setw(3) << (*count)++  << *(node->data) << std::endl;
-        //count++;
         PrintOrdersPrivate(node->left, count);
     }
 }
@@ -183,7 +170,6 @@ void BinaryTreeOrder::PrintRepairingOrdersPrivate(TreeNodeOrder* node, int* coun
         if (!node->data->GetStatus())
         {
             std::cout << std::left << std::setw(3) << (*count)++ << *(node->data) << std::endl;
-            //std::cout << "Product: " << node->data->GetProductName() << ", Issue Date: " << node->data->GetIssueDate() << std::endl;
         }
         PrintRepairingOrdersPrivate(node->left, count);
     }
@@ -197,21 +183,10 @@ void BinaryTreeOrder::SearchOrdersByProductNamePrivate(TreeNodeOrder* node, cons
         if (node->data->GetProductName().find(_product_name) != std::string::npos) 
         {
             std::cout << std::left << std::setw(3) << (*count)++ << *(node->data) << std::endl;
-            //std::cout << "Product: " << root->data->GetProductName() << ", Owner: " << root->data->GetOwnerFullName() << std::endl;
         }
         SearchOrdersByProductNamePrivate(node->left, _product_name, count);
     }
 }
-
-//TreeNodeOrder* BinaryTreeOrder::GetRoot()
-//{
-//    return root;
-//}
-//
-//void BinaryTreeOrder::SetRoot(TreeNodeOrder* data)
-//{
-//    this->root = data;
-//}
 
 void BinaryTreeOrder::DeleteOrderTreePrivate(TreeNodeOrder* node)
 {
@@ -228,45 +203,6 @@ void BinaryTreeOrder::DeleteOrderTreePrivate(TreeNodeOrder* node)
 
 TreeNodeOrder* BinaryTreeOrder::DeleteOrderNodePrivate(TreeNodeOrder* node, int* count_to_find, int* count)
 {
-    /*if (node != nullptr)
-    {
-        node->left = DeleteOrderNodePrivate(node->left, count_to_find, count);
-        if (*count_to_find == *count)
-        {
-            if (node->left == nullptr && node->right == nullptr) {
-                delete node;
-                (*count)++;
-                return nullptr;
-            }
-            else if (node->left == nullptr) {
-                TreeNodeOrder* temp = node->right;
-                delete node;
-                return temp;
-            }
-            else if (node->right == nullptr) {
-                TreeNodeOrder* temp = node->left;
-                delete node;
-                return temp;
-            }
-            else 
-            {
-                TreeNodeOrder* minRightNode = FindMinNode(node->right);
-                *(node->data) = *(minRightNode->data);
-                node->right = DeleteOrderNodePrivate(node->right, count_to_find, count);
-            }         
-            (*count)++;
-        }
-        else
-        {
-            (*count)++;
-            node->right = DeleteOrderNodePrivate(node->right, count_to_find, count);
-        }
-    }
-    else
-    {
-        return nullptr;
-    }
-    return node;*/
     if (node != nullptr)
     {
         node->right = DeleteOrderNodePrivate(node->right, count_to_find, count);
@@ -354,82 +290,84 @@ void BinaryTreeOrder::EditOrderNodePrivate(TreeNodeOrder* node, int* count_to_fi
                 std::cin.ignore(std::cin.rdbuf()->in_avail());
                 std::cin.clear();
                 std::cin >> choice;
-                std::cin.ignore(std::cin.rdbuf()->in_avail());
-                std::cin.clear();
                 while (cin.fail())
                 {
-                    //in.ignore(in.rdbuf()->in_avail());
                     cin.clear();
                     while (cin.get() != '\n');
                     std::cout << "Invalid value. Try again" << std::endl;
                     cin >> choice;
-                    std::cin.ignore(std::cin.rdbuf()->in_avail());
-                    std::cin.clear();
-                    //throw 1;
                 }
                 switch (choice) {
                 case 1:
                     system("cls");
                     std::cout << "Enter a new product name: ";
+                    std::cin.ignore(std::cin.rdbuf()->in_avail());
+                    std::cin.clear();
                     std::getline(std::cin, s);
-                    //std::cin >> s;
                     node->data->SetProductName(s);
                     break;
                 case 2:
                     system("cls");
                     std::cout << "Enter a new product brand: ";
+                    std::cin.ignore(std::cin.rdbuf()->in_avail());
+                    std::cin.clear();
                     std::getline(std::cin, s);
-                    //std::cin >> s;
                     node->data->SetProductBrand(s);
                     break;
                 case 3:
                     system("cls");
                     std::cout << "Enter a new owner full name: ";
+                    std::cin.ignore(std::cin.rdbuf()->in_avail());
+                    std::cin.clear();
                     std::getline(std::cin, s);
-                    //std::cin >> s;
                     node->data->SetOwnerFullName(s);
                     break;
                 case 4:
                     system("cls");
                     std::cout << "Enter a new owner phone number: ";
+                    std::cin.ignore(std::cin.rdbuf()->in_avail());
+                    std::cin.clear();
                     std::getline(std::cin, s);
-                    //std::cin >> s;
                     node->data->SetOwnerPhoneNumber(s);
                     break;
                 case 5:
                     system("cls");
                     std::cout << "Enter a new repair cost: ";
+                    std::cin.ignore(std::cin.rdbuf()->in_avail());
+                    std::cin.clear();
                     std::cin >> d;
                     while (cin.fail())
                     {
-                        //in.ignore(in.rdbuf()->in_avail());
                         cin.clear();
                         while (cin.get() != '\n');
                         std::cout << "Invalid value. Try again" << std::endl;
                         cin >> d;
-                        //throw 1;
                     }
                     node->data->SetRepairCost(d);
                     break;
                 case 6:
                     system("cls");
                     std::cout << "Enter a new acceptance date (please, use the dd.mm.yyyy format): ";
+                    std::cin.ignore(std::cin.rdbuf()->in_avail());
+                    std::cin.clear();
                     std::getline(std::cin, s);
-                    //std::cin >> s;
                     node->data->SetAcceptanceDate(s);
                     system("cls");
                     break;
                 case 7:
                     system("cls");
                     std::cout << "Enter a new issue date (please, use the dd.mm.yyyy format): ";
+                    std::cin.ignore(std::cin.rdbuf()->in_avail());
+                    std::cin.clear();
                     std::getline(std::cin, s);
-                    //std::cin >> s;
                     node->data->SetIssueDate(s);
                     system("cls");
                     break;
                 case 8:
                     system("cls");
                     std::cout << "Enter a new status: ";
+                    std::cin.ignore(std::cin.rdbuf()->in_avail());
+                    std::cin.clear();
                     std::cin >> b;
                     node->data->SetStatus(b);
                     std::cin.clear();
@@ -449,7 +387,6 @@ void BinaryTreeOrder::EditOrderNodePrivate(TreeNodeOrder* node, int* count_to_fi
                         std::cin >> choice3;
                         while (cin.fail())
                         {
-                            //in.ignore(in.rdbuf()->in_avail());
                             cin.clear();
                             while (cin.get() != '\n');
                             std::cout << "Invalid value. Try again" << std::endl;
@@ -463,7 +400,6 @@ void BinaryTreeOrder::EditOrderNodePrivate(TreeNodeOrder* node, int* count_to_fi
                             std::cout << "Exiting..." << std::endl;
                             break;
                         case 2:
-                            //system("cls");
                             choice = 1;
                             choice3 = 0;
                             break;
@@ -472,8 +408,6 @@ void BinaryTreeOrder::EditOrderNodePrivate(TreeNodeOrder* node, int* count_to_fi
                             std::cout << "Invalid choice. Please try again." << std::endl;
                         }
                     } while (choice3 != 0);
-                    //users = readUsersFromFile("users.txt");
-                    //std::cout << "Changes cancelled." << std::endl;
                     break;
                 default:
                     std::cout << "Invalid choice. Please try again." << std::endl;
@@ -496,9 +430,6 @@ void BinaryTreeOrder::EditOrderNodePrivate(TreeNodeOrder* node, int* count_to_fi
 
 void BinaryTreeOrder::SaveOrdersToFilePrivate(TreeNodeOrder* node, std::ofstream* outFile)
 {
-    //std::ofstream outFile(filename, std::ios::binary | std::ios::out);
-    /*if (outFile->is_open())
-    {*/
         if (node != nullptr)
         {
             // Запись _product_name
@@ -522,10 +453,9 @@ void BinaryTreeOrder::SaveOrdersToFilePrivate(TreeNodeOrder* node, std::ofstream
             outFile->write(node->data->GetOwnerPhoneNumber().c_str(), owner_phone_number_size);
 
             // Запись _repair_cost
-            //outFile.write(reinterpret_cast<char*>(&((&(root->data))->GetRepairCost())), sizeof(double));
             double temp = node->data->GetRepairCost();
             outFile->write(reinterpret_cast<char*>(&temp), sizeof(double));
-            //std::cout << root->data.GetRepairCost();
+
             // Запись _acceptance_date
             int acceptance_date_size = node->data->GetAcceptanceDate().size();
             outFile->write(reinterpret_cast<char*>(&acceptance_date_size), sizeof(int));
@@ -543,14 +473,7 @@ void BinaryTreeOrder::SaveOrdersToFilePrivate(TreeNodeOrder* node, std::ofstream
             SaveOrdersToFilePrivate(node->left, outFile);
             SaveOrdersToFilePrivate(node->right, outFile);
 
-            //outFile->close();
-            //std::cout << "Data has been written to the file." << std::endl;
         }
-/*  }
-    else {
-        std::cout << "Failed to open the file for writing." << std::endl;
-    }
-*/
 }
 
 void BinaryTreeOrder::LoadOrdersFromFile(const std::string& filename)
@@ -558,7 +481,6 @@ void BinaryTreeOrder::LoadOrdersFromFile(const std::string& filename)
     std::ifstream inFile(filename, std::ios::binary | std::ios::in);
     if (inFile.is_open())
     {
-        //this->SetRoot(nullptr);
         while (inFile.good())
         {
             Order* order = new Order();
@@ -617,7 +539,6 @@ void BinaryTreeOrder::LoadOrdersFromFile(const std::string& filename)
             order->SetStatus(temp_bool);
 
             this->Insert(order);
-            //root = InsertNode(root, order);
         }
         inFile.close();
     }

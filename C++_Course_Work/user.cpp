@@ -1,5 +1,3 @@
-//#include "user.h"
-//#include "order.h"
 #include "binary_tree.h"
 
 
@@ -11,28 +9,14 @@ User::User(const string& name, const string& password, bool isAdmin)
 
 User::User() = default;
 
-//void Admin::AddNewOrder(BinaryTreeOrder* tree)
-//{
-//	Order* order = new Order();
-//	std::cout << "¬ведите данные" << std::endl;
-//	cin >> *order;
-//	//BinaryTreeOrder* tree = new BinaryTreeOrder();
-//	//tree->LoadOrdersFromFile("../data/orders.bin");
-//	tree->Insert(order);
-//	tree->PrintOrders();
-//}
-
 void Admin::AddNewOrder(BinaryTreeOrder* tree)
 {
 	Order* order = new Order();
 	std::cout << "Enter data: " << std::endl;
 	cin >> *order;
-	//BinaryTreeOrder* tree = new BinaryTreeOrder();
-	//tree->LoadOrdersFromFile("../data/orders.bin");
 	tree->Insert(order);
 	system("cls");
 	std::cout << "The data has been added succesfully " << std::endl;
-	//tree->PrintOrders();
 }
 
 void Admin::AddNewUser(BinaryTreeUser* tree)
@@ -44,6 +28,13 @@ void Admin::AddNewUser(BinaryTreeUser* tree)
 	cin.ignore(cin.rdbuf()->in_avail());
 	cin.clear();
 	getline(cin, s);
+	while (tree->SearchUserName(s) == 1)
+	{
+		cin.clear();
+		//while (cin.get() != '\n');
+		std::cout << "Error: such username already exists. Please try again." << std::endl;
+		getline(cin, s);
+	}
 	user->SetLogin(s);
 	cout << "Enter user's password: ";
 	string password;
